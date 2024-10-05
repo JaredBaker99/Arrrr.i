@@ -5,7 +5,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
-ELEVENLABS_API_KEY = "YOUR_API_KEY"
+ELEVENLABS_API_KEY = "sk_b190f1cb25c2dfb19d7f1f34b0146f2e4d2717bbb6450e7c"
 client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
 
 CORS(app)  # Enable CORS for all routes

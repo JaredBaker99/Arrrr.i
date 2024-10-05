@@ -1,6 +1,7 @@
 var recordButton = document.getElementById('recordButton');
 var userTextOutputElement = document.getElementById('userTextOutput');
 var pirateTextOutputElement = document.getElementById('pirateTextOutput');
+var playOriginalVoice = document.getElementById('playButton');
 var audio; // Declare a variable to hold the Audio object
 
 var voiceRecognition = new webkitSpeechRecognition();
@@ -29,6 +30,7 @@ function record() {
                 audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
                 audioChunks = [];  
                 console.log(userTextOutputElement.value);
+                sendToServer(userTextOutput.value);
             };
         });
     } else {
@@ -46,8 +48,6 @@ voiceRecognition.addEventListener('result', (event) => {
     }
     userTextOutputElement.value = userTextOutput;
     
-    // Send text to the server for conversion to pirate speech
-    sendToServer(userTextOutput);
 });
 
 function sendToServer(text) {
