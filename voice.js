@@ -1,3 +1,5 @@
+//import { stopLeftCat } from "./stop_animate";
+
 var recordButton = document.getElementById('recordButton');
 var userTextOutputElement = document.getElementById('userTextOutput');
 var pirateTextOutputElement = document.getElementById('pirateTextOutput');
@@ -74,6 +76,11 @@ function play() {
             playOriginalVoice.innerHTML = 'Stop';
             audio = new Audio(URL.createObjectURL(audioBlob));
             audio.play();
+
+            audio.addEventListener('ended', () => {
+                stopLeftCat();
+            });
+
         } else {
             console.log("Record first!");
         }

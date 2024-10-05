@@ -15,14 +15,18 @@
     <section class="record">
         <button id="recordButton" onclick="record()">Record</button>
         <textarea id="userTextOutput"></textarea>
-        <button id="playButton" onclick="play()">Play</button>
+        <button id="playButton" onclick="play(); animatedLeftCat()">Play</button>
     </section>
     <section class="playback">
         <button style="visibility: hidden;"></button>
         <textarea id="pirateTextOutput"></textarea>
-        <button id="playAudio" onclick="playPirate()">Play</button>
+        <button id="playAudio" onclick="playPirate(); animatedRightCat()">Play</button>
     </section>
-
+    <section class="cats">
+        <img id='leftCat' src="images/normal_cat_idle_big.gif", alt="cat talking">
+        <img id='rightCat' src="images/pirate_cat_idle_big.gif", alt="pirate cat talking">
+    </section>
     <script src="voice.js"></script>
+    <script src="animate.js"></script>
 </body>
 </html>

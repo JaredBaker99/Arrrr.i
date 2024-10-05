@@ -53,3 +53,19 @@ button {
 button:hover {
     background-color: #0056b3; /* Darker button color on hover */
 }
+
+.cats {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftCat {
+    position: relative; /* Keep it positioned within its flex container */
+}
+
+.rightCat {
+    position: relative; /* Keep it positioned within its flex container */
+}
