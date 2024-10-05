@@ -1,4 +1,6 @@
 //import { stopLeftCat } from "./stop_animate";
+const CAT_IDLE = 'images/normal_cat_idle_big.gif';
+const PIRATE_CAT_IDLE = 'images/pirate_cat_idle_big.gif';
 
 var recordButton = document.getElementById('recordButton');
 var userTextOutputElement = document.getElementById('userTextOutput');
@@ -97,4 +99,16 @@ function playPirate() {
     // Implement pirate audio playback functionality if needed
     audio = new Audio('./output.mp3');
     audio.play()
-}   
+
+    audio.addEventListener('ended', () => {
+        stopRightCat();
+    });
+}
+
+function stopLeftCat() {
+    document.getElementById('leftCat').src = CAT_IDLE;
+}
+
+function stopRightCat() {
+    document.getElementById('rightCat').src = PIRATE_CAT_IDLE;
+}
