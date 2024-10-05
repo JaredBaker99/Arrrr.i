@@ -5,11 +5,12 @@ body {
     align-items: center; /* Center horizontally */
     height: 75vh; /* Height of the body section */
     margin: 0; /* Remove default margin */
-    background-color: #f0f0f0; /* Background color */
+    background-color: #90D6FF; /* Background color */
     font-family: Arial, sans-serif; /* Font styling */
 }
 
 header {
+    font-family: "Luminari", fantasy;
     position: absolute; /* Position the header at the top */
     top: 20px; /* Space from the top */
     text-align: center; /* Center the text in the header */
@@ -28,8 +29,8 @@ header {
 }
 
 textarea {
-    width: 500px; /* Set a fixed width for the textarea */
-    height: 100px; /* Set a fixed height for the textarea */
+    width: 420px; /* Set a fixed width for the textarea */
+    height: 50px; /* Set a fixed height for the textarea */
     margin: 0 10px; /* Margin on left and right */
     padding: 10px; /* Padding inside the textarea */
     border-radius: 5px; /* Rounded corners */
@@ -53,3 +54,23 @@ button {
 button:hover {
     background-color: #0056b3; /* Darker button color on hover */
 }
+
+#banner-image
+{
+    left: 0;
+    right: 0;
+    z-index: -1;
+    margin-inline: auto;
+    width: 45%;
+    height: 140%;
+    position: absolute;
+    top: -25px;
+}
+
+#banner-text
+{
+    /*font-family: "Trattatello", fantasy;*/
+    font-family: "Jazz LET", fantasy;
+}
+
+

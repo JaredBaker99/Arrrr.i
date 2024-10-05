@@ -1,27 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ARRR.I</title>
     <link rel="stylesheet" href="MainPage.css">
 </head>
 <body>
     <header>
-        <img src = "banner.png" id="banner-image">
-        <h1>ARRR.I</h1>
-        <p id="banner-text">Your Speech Translated To Pirate</p>
     </header>
     <section class="record">
-        <button id="recordButton" onclick="record()">Record</button>
         <textarea id="userTextOutput"></textarea>
         <button id="playButton" onclick="play()">Play</button>
     </section>
     <section class="playback">
         <button style="visibility: hidden;"></button> <!-- Hidden button for alignment -->
         <textarea id="pirateTextOutput"></textarea>
-        <button id="playAudio" onclick="playPirate()">Play</button>
     </section>
 
-    <script src="voice.js"></script>
 
 </body>
 </html>
