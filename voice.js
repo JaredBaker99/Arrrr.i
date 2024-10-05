@@ -30,7 +30,7 @@ function record() {
                 audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
                 audioChunks = [];  
                 console.log(userTextOutputElement.value);
-                sendToServer(userTextOutput.value);
+                sendToServer(userTextOutputElement.value);
             };
         });
     } else {
