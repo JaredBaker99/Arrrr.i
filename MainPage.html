@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Arrr.I</title>
+        <link rel="stylesheet" href="MainPage.css">
+    </head>
+    <script>
+        function getLocalStream() 
+        {
+            navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => 
+            {
+                window.localStream = stream;
+                window.localAudio.srcObject = stream;
+                window.localAudio.autoplay = true;
+            })
+            .catch((err) => 
+            {
+                console.error(`you got an error: ${err}`);
+            });
+        }
+
+        getLocalStream()
+
+        function record() {
+            const button = document.getElementById('record');
+            if (button.innerHTML === 'Record') {
+                button.innerHTML = 'Stop Recording';
+            } else {
+                button.innerHTML = 'Record';
+            }
+        }
+
+        function play() {
+            const button = document.getElementById('play');
+            if (button.innerHTML === 'Play') {
+                button.innerHTML = 'Stop';
+            } else {
+                button.innerHTML = 'Play';
+            }
+        }
+    </script>
+    <body>
+        <header>
+            <h1>Arrr.I</h1>
+            <p>Your speech translated to pirate</p>
+        </header>
+        <section class="record">
+            <button id="RecordButton" onclick=record()>Record</button>
+            <button id="PlayButton" onclick=play()>Play</button>
+            <textarea id="userTextOutput"></textarea>
+        </section>
+</body>
+</html> 
