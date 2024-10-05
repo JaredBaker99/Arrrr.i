@@ -88,4 +88,6 @@ function play() {
 
 function playPirate() {
     // Implement pirate audio playback functionality if needed
-}
+    audio = new Audio('./output.mp3');
+    audio.play()
+}   
