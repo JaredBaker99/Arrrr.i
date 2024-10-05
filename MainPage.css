@@ -1,4 +1,55 @@
-body 
-{
-    background-color: lightblue;
+body {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    height: 75vh; /* Height of the body section */
+    margin: 0; /* Remove default margin */
+    background-color: #f0f0f0; /* Background color */
+    font-family: Arial, sans-serif; /* Font styling */
+}
+
+header {
+    position: absolute; /* Position the header at the top */
+    top: 20px; /* Space from the top */
+    text-align: center; /* Center the text in the header */
+    width: 100%; /* Ensure the header takes full width */
+}
+
+.record {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    margin: 100px 0; /* Margin between sections */
+}
+
+.playback {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+}
+
+textarea {
+    width: 500px; /* Set a fixed width for the textarea */
+    height: 100px; /* Set a fixed height for the textarea */
+    margin: 0 10px; /* Margin on left and right */
+    padding: 10px; /* Padding inside the textarea */
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #ccc; /* Border styling */
+    resize: none; /* Disable resizing */
+}
+
+button {
+    padding: 10px 20px; /* Button padding */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #007BFF; /* Button color */
+    color: white; /* Button text color */
+    transition: background-color 0.3s; /* Transition for hover effect */
+    width: 100px; /* Fixed width for buttons */
+    min-width: 100px; /* Minimum width to prevent shrinking */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker button color on hover */
 }
