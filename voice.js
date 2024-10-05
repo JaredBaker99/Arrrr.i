@@ -102,6 +102,7 @@ function playPirate() {
 
     audio.addEventListener('ended', () => {
         stopRightCat();
+        audio.pause();
     });
 }
 
