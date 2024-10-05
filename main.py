@@ -4,6 +4,7 @@ from elevenlabs.client import ElevenLabs
 from flask_cors import CORS
 
 app = Flask(__name__)
+from test import translate_text_to_pirate_speech
 
 ELEVENLABS_API_KEY = "sk_b190f1cb25c2dfb19d7f1f34b0146f2e4d2717bbb6450e7c"
 client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
@@ -14,10 +15,14 @@ CORS(app)  # Enable CORS for all routes
 def speech_to_text():
     data = request.json
     text = data.get('text')
+
+    ptext = translate_text_to_pirate_speech(text)
+    
     
     # You may need to replace this with actual pirate text translation logic
-    pirate_text = f"Arrr! You said: {text}"  # Placeholder for actual pirate translation logic
-    audio_file_path = text_to_speech_file(pirate_text)
+    pirate_text = f" {ptext}"  # Placeholder for actual pirate translation logic
+    audio_file_path = text_to_speech_file(ptext)
+    
 
     return jsonify({'pirateText': pirate_text, 'audioFilePath': audio_file_path})
 
@@ -43,3 +48,8 @@ def text_to_speech_file(text: str) -> str:
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# Create text to turn into speech
+og_text = (
+   "Ahoy matey! Gather 'round and lend me yer ear! Ahoy matey! Gather 'round and lend me yer ear! In the briny deep where the sea dogs roam, a fierce storm brews on the horizon, and the waves be crashin' like thunder! We be settin sail aboard the good ship Sea Serpent, with a crew of scallywags ready for treasure and glory."
+)
