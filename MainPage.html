@@ -6,11 +6,16 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>Arrr.I</h1>
-        <p>Your speech translated to pirate</p>
+        <img src="banner.png" id="banner-image">
+        <h1>Pirateyyy.AI</h1>
+        <p id="banner-text">Your Speech Translated to a Pirate.</p>
+        <p id="banner-text"><a>Want to chat with a Pirate Bot?</a></p>
     </header>
     <section class="record">
         <button id="recordButton" onclick="record()">Record</button>
@@ -20,7 +25,7 @@
     <section class="playback">
         <button style="visibility: hidden;"></button>
         <textarea id="pirateTextOutput"></textarea>
-        <button id="playAudio" onclick="playPirate(); animatedRightCat()">Play</button>
+        <button id="playAudio" onclick="playPirate(); animatedRightCat()">Pirate Audio</button>
     </section>
     <section class="cats">
         <img id='leftCat' src="images/normal_cat_idle_big.gif", alt="cat talking">

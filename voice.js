@@ -1,4 +1,4 @@
-//import { stopLeftCat } from "./stop_animate";
+
 const CAT_IDLE = 'images/normal_cat_idle_big.gif';
 const PIRATE_CAT_IDLE = 'images/pirate_cat_idle_big.gif';
 
@@ -42,6 +42,7 @@ function record() {
         voiceRecognition.stop();
         console.log("Stopped recording user's voice.");
         audioRecord.stop();
+
     }
 }
 
@@ -71,28 +72,35 @@ function sendToServer(text) {
         console.error('Error:', error);
     });
 }
-
 function play() {
     if (playOriginalVoice.innerHTML === 'Play') {
         if (audioBlob) {
             playOriginalVoice.innerHTML = 'Stop';
-            audio = new Audio(URL.createObjectURL(audioBlob));
+            audio = new Audio(URL.createObjectURL(audioBlob)); 
             audio.play();
 
-            audio.addEventListener('ended', () => {
-                stopLeftCat();
-            });
+            // Reset the event listener to avoid duplicates
+            audio.removeEventListener('ended', handleAudioEnded); // Remove previous listener if it exists
+            audio.addEventListener('ended', handleAudioEnded); // Add a new listener for the current audio
 
+            stopLeftCat(); // Stop left cat animation
         } else {
-            console.log("Record first!");
+            console.log("Record audio first!");
         }
     } else {
         playOriginalVoice.innerHTML = 'Play';
         if (audio) {
+            stopLeftCat();
+            audio.currentTime = 0;
             audio.pause(); 
-            audio.currentTime = 0; 
         }
     }
+}
+
+function handleAudioEnded() {
+    // This function handles what happens when the audio ends
+    stopLeftCat(); // Stop left cat animation
+    playOriginalVoice.innerHTML = 'Play'; // Reset button state
 }
 
 function playPirate() {

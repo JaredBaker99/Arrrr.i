@@ -1,7 +1,7 @@
 import openai
 
 response_list = []
-client = openai.OpenAI(api_key ='YOUR_KEY_HERE')
+client = openai.OpenAI(api_key ='openai_key')
 
 completion = client.chat.completions.create(
     

@@ -3,10 +3,158 @@ body {
     flex-direction: column; /* Stack elements vertically */
     justify-content: center; /* Center vertically */
     align-items: center; /* Center horizontally */
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Remove default margin */
+    background-color: #f0f0f0; /* Fallback background color */
+    background-image: url("ocean_water.jpg"); /* Background image */
+    background-size: cover; /* Cover the entire area */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent repeating the background image */
+    font-family: "Pirata One", sans-serif; /* Font styling */
+}
+
+
+.pirata-one-regular {
+    font-family: "Pirata One", system-ui;
+    font-weight: 400;
+    font-style:italic;
+}
+
+header {
+    position: absolute; /* Position the header at the top */
+    top: 20px; /* Space from the top */
+    text-align: center; /* Center the text in the header */
+    width: 100%; /* Ensure the header takes full width */
+}
+
+header h1{
+    font-size: 35px;
+}
+
+.record {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    margin: 100px 0; /* Margin between sections */
+}
+
+.playback {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+}
+
+#userTextOutput{
+    width: 400px;
+    height: 180px;
+    position: absolute;
+    left: 120px;
+    bottom: 230px;
+    border-radius: 150px;
+}
+
+#pirateTextOutput{
+    width: 400px;
+    height: 180px;
+    position: absolute;
+    right: 120px;
+    bottom: 230px;
+    border-radius: 150px;
+}
+
+button {
+    padding: 15px 20px; /* Button padding */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    border: 3px solid black; /* Remove default border */
+    font-weight: 300;
+    border-radius: 5px; /* Rounded corners */
+    background-color: #928170; /* Button color */
+    color: white; /* Button text color */
+    transition: background-color 0.3s; /* Transition for hover effect */
+    width: 100px; /* Fixed width for buttons */
+    min-width: 100px; /* Minimum width to prevent shrinking */
+    font-family: "Pirata One", system-ui;
+}
+
+a{
+    color: rgb(0, 26, 255);
+    text-decoration:underline;
+}
+
+a:hover{
+    color: rgb(89, 20, 89);
+    cursor: pointer;
+}
+a::after{
+    color: black;
+
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker button color on hover */
+}
+
+#recordButton{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 140px;
+    width: 150px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: #4e915c;
+    border: 3px solid #030303;
+    color: black;
+}
+
+#playButton{
+    position: absolute;
+    top: 60px;
+    left: 50px;
+    width: 175px;
+    height: 100px;
+    border-radius: 50px;
+    font-size: 50px;
+    color: black;
+    font-family: fantasy;
+}
+
+#playAudio{
+    position: absolute;
+    top: 60px;
+    right: 50px;
+    width: 175px;
+    height: 100px;
+    border-radius: 50px;
+    font-size: 25px;
+    color: black;
+    font-family: fantasy;
+}
+
+.cats {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftCat {
+    position: relative; /* Keep it positioned within its flex container */
+}
+
+.rightCat {
+    height: 50px;
+    position: relative; /* Keep it positioned within its flex container */
+}
+body {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
     height: 75vh; /* Height of the body section */
     margin: 0; /* Remove default margin */
-    background-color: #f0f0f0; /* Background color */
-    font-family: Arial, sans-serif; /* Font styling */
+    background-color: #90D6FF; /* Background color */
 }
 
 header {
@@ -28,44 +176,36 @@ header {
 }
 
 textarea {
-    width: 500px; /* Set a fixed width for the textarea */
-    height: 100px; /* Set a fixed height for the textarea */
+    width: 300px; /* Set a fixed width for the textarea */
+    height: 50px; /* Set a fixed height for the textarea */
     margin: 0 10px; /* Margin on left and right */
     padding: 10px; /* Padding inside the textarea */
     border-radius: 5px; /* Rounded corners */
     border: 1px solid #ccc; /* Border styling */
     resize: none; /* Disable resizing */
+    text-align: center; /* Center text alignment */
+    overflow-wrap: break-word; /* Break words to the next line */
+    white-space: pre-wrap; /* Preserve whitespace and wrap */
+    font-family: Arial, sans-serif; /* Example font */
+    font-size: 14px; /* Font size */
+    background-color: #797e82;
+    color: white;
 }
 
-button {
-    padding: 10px 20px; /* Button padding */
-    font-size: 16px; /* Font size */
-    cursor: pointer; /* Pointer cursor on hover */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #007BFF; /* Button color */
-    color: white; /* Button text color */
-    transition: background-color 0.3s; /* Transition for hover effect */
-    width: 100px; /* Fixed width for buttons */
-    min-width: 100px; /* Minimum width to prevent shrinking */
-}
+
 
 button:hover {
     background-color: #0056b3; /* Darker button color on hover */
 }
 
-.cats {
+#banner-image
+{
+    left: 0;
+    right: 0;
+    z-index: -1;
+    margin-inline: auto;
+    width: 45%;
+    height: 150%;
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.leftCat {
-    position: relative; /* Keep it positioned within its flex container */
-}
-
-.rightCat {
-    position: relative; /* Keep it positioned within its flex container */
+    top: -45px;
 }
