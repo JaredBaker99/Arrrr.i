@@ -11,6 +11,7 @@ var playOriginalVoice = document.getElementById('playButton');
 var playPirateVoice = document.getElementById('playAudio');
 var audio; // Declare a variable to hold the Audio object
 var pAudio;
+var savedData;
 
 var voiceRecognition = new webkitSpeechRecognition();
 var audioRecord;  
@@ -69,6 +70,7 @@ function sendToServer(text) {
     .then(response => response.json())
     .then(data => {
         console.log('Response from server:', data);
+        savedData = data;
         pirateTextOutputElement.value = data.pirateText; // Update pirate text output
     })
     .catch((error) => {
@@ -122,10 +124,20 @@ playPirateVoice.addEventListener('click', () => {
 });
 
 function playPirate() {
-    // Implement pirate audio playback functionality if needed
+    // Check if savedData exists and has the audioFilePath property
+    if (!savedData || !savedData.audioFilePath) {
+        console.error("No audio file path found.");
+        playPirateVoice.innerHTML = 'Play';
+        stopRightCat();
+        return; // Exit if there's no audio file path
+    }
+
+    console.log(savedData.audioFilePath); // For debugging
     playPirateVoice.innerHTML = 'Stop';
     animatedRightCat();
-    pAudio = new Audio('./output.mp3');
+    
+    // Use savedData instead of data
+    pAudio = new Audio(savedData.audioFilePath);
     pAudio.play();
 
     pAudio.addEventListener('ended', () => {
@@ -134,6 +146,8 @@ function playPirate() {
         pAudio.pause();
     });
 }
+
+
 
 function stopPirate() {
     playPirateVoice.innerHTML = 'Play';
