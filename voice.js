@@ -1,12 +1,16 @@
 
 const CAT_IDLE = 'images/normal_cat_idle_big.gif';
 const PIRATE_CAT_IDLE = 'images/pirate_cat_idle_big.gif';
+const CAT_TALKING = 'images/normal_cat_talk_big.gif'
+const PIRATE_CAT_TALKING = 'images/pirate_cat_talk_big.gif'
 
 var recordButton = document.getElementById('recordButton');
 var userTextOutputElement = document.getElementById('userTextOutput');
 var pirateTextOutputElement = document.getElementById('pirateTextOutput');
 var playOriginalVoice = document.getElementById('playButton');
+var playPirateVoice = document.getElementById('playAudio');
 var audio; // Declare a variable to hold the Audio object
+var pAudio;
 
 var voiceRecognition = new webkitSpeechRecognition();
 var audioRecord;  
@@ -72,47 +76,76 @@ function sendToServer(text) {
         console.error('Error:', error);
     });
 }
+
+playOriginalVoice.addEventListener('click', () => {
+    if (playOriginalVoice.innerHTML === 'Play') { // Change 'Click Me' to your specific text
+        play();
+    }
+    else{
+        stop();
+    }
+});
+
+
 function play() {
-    if (playOriginalVoice.innerHTML === 'Play') {
-        if (audioBlob) {
-            playOriginalVoice.innerHTML = 'Stop';
-            audio = new Audio(URL.createObjectURL(audioBlob)); 
-            audio.play();
+    if (audioBlob) {
+        animatedLeftCat();
+        playOriginalVoice.innerHTML = 'Stop';
+        audio = new Audio(URL.createObjectURL(audioBlob));
+        audio.play();
 
-            // Reset the event listener to avoid duplicates
-            audio.removeEventListener('ended', handleAudioEnded); // Remove previous listener if it exists
-            audio.addEventListener('ended', handleAudioEnded); // Add a new listener for the current audio
-
-            stopLeftCat(); // Stop left cat animation
-        } else {
-            console.log("Record audio first!");
-        }
-    } else {
-        playOriginalVoice.innerHTML = 'Play';
-        if (audio) {
+        audio.addEventListener('ended', () => {
+            playOriginalVoice.innerHTML = 'Play';
             stopLeftCat();
-            audio.currentTime = 0;
-            audio.pause(); 
-        }
+        });
+
+    } else {
+        console.log("Record first!");
     }
 }
 
-function handleAudioEnded() {
-    // This function handles what happens when the audio ends
-    stopLeftCat(); // Stop left cat animation
-    playOriginalVoice.innerHTML = 'Play'; // Reset button state
+function stop() {
+    playOriginalVoice.innerHTML = 'Play';
+    stopLeftCat();
+    if (audio) {
+        audio.pause(); 
+        audio.currentTime = 0; 
+    }
 }
+
+playPirateVoice.addEventListener('click', () => {
+    if (playPirateVoice.innerHTML === 'Play') { // Change 'Click Me' to your specific text
+        playPirate();
+    }
+    else{
+        stopPirate();
+    }
+});
 
 function playPirate() {
     // Implement pirate audio playback functionality if needed
-    audio = new Audio('./output.mp3');
-    audio.play()
+    playPirateVoice.innerHTML = 'Stop';
+    animatedRightCat();
+    pAudio = new Audio('./output.mp3');
+    pAudio.play();
 
-    audio.addEventListener('ended', () => {
+    pAudio.addEventListener('ended', () => {
+        playPirateVoice.innerHTML = 'Play';
         stopRightCat();
-        audio.pause();
+        pAudio.pause();
     });
 }
+
+function stopPirate() {
+    playPirateVoice.innerHTML = 'Play';
+    stopRightCat();
+    if(pAudio) {
+        pAudio.pause(); 
+        pAudio.currentTime = 0; 
+    }
+}
+
+
 
 function stopLeftCat() {
     document.getElementById('leftCat').src = CAT_IDLE;
@@ -120,4 +153,12 @@ function stopLeftCat() {
 
 function stopRightCat() {
     document.getElementById('rightCat').src = PIRATE_CAT_IDLE;
+}
+
+function animatedLeftCat() {
+    document.getElementById('leftCat').src = CAT_TALKING;
+}
+
+function animatedRightCat() {
+    document.getElementById('rightCat').src = PIRATE_CAT_TALKING;
 }
