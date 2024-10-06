@@ -13,13 +13,6 @@ body {
     font-family: "Pirata One", sans-serif; /* Font styling */
 }
 
-
-.pirata-one-regular {
-    font-family: "Pirata One", system-ui;
-    font-weight: 400;
-    font-style:italic;
-}
-
 header {
     position: absolute; /* Position the header at the top */
     top: 20px; /* Space from the top */
@@ -27,37 +20,31 @@ header {
     width: 100%; /* Ensure the header takes full width */
 }
 
-header h1{
+header h1 {
     font-size: 35px;
 }
 
-.record {
+.record, .playback {
     display: flex; /* Use flexbox for alignment */
     align-items: center; /* Center items vertically */
     margin: 100px 0; /* Margin between sections */
 }
 
-.playback {
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center items vertically */
-}
-
-#userTextOutput{
+#userTextOutput, #pirateTextOutput {
     width: 400px;
     height: 180px;
     position: absolute;
+    border-radius: 150px;
+}
+
+#userTextOutput {
     left: 120px;
     bottom: 230px;
-    border-radius: 150px;
 }
 
-#pirateTextOutput{
-    width: 400px;
-    height: 180px;
-    position: absolute;
+#pirateTextOutput {
     right: 120px;
     bottom: 230px;
-    border-radius: 150px;
 }
 
 button {
@@ -71,33 +58,16 @@ button {
     color: white; /* Button text color */
     transition: background-color 0.3s; /* Transition for hover effect */
     width: 100px; /* Fixed width for buttons */
-    min-width: 100px; /* Minimum width to prevent shrinking */
     font-family: "Pirata One", system-ui;
-}
-
-a{
-    color: rgb(0, 26, 255);
-    text-decoration:underline;
-}
-
-a:hover{
-    color: rgb(89, 20, 89);
-    cursor: pointer;
-}
-a::after{
-    color: black;
-
 }
 
 button:hover {
     background-color: #0056b3; /* Darker button color on hover */
 }
 
-#recordButton{
+#recordButton {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 140px;
+    margin: 140px auto 0; /* Center and space from top */
     width: 150px;
     height: 100px;
     border-radius: 50px;
@@ -106,28 +76,23 @@ button:hover {
     color: black;
 }
 
-#playButton{
+#playButton, #playAudio {
     position: absolute;
     top: 60px;
-    left: 50px;
-    width: 175px;
-    height: 100px;
-    border-radius: 50px;
-    font-size: 50px;
-    color: black;
-    font-family: fantasy;
-}
-
-#playAudio{
-    position: absolute;
-    top: 60px;
-    right: 50px;
     width: 175px;
     height: 100px;
     border-radius: 50px;
     font-size: 25px;
     color: black;
     font-family: fantasy;
+}
+
+#playButton {
+    left: 50px; /* Position for play button */
+}
+
+#playAudio {
+    right: 50px; /* Position for play audio */
 }
 
 .cats {
@@ -139,40 +104,8 @@ button:hover {
     justify-content: space-between;
 }
 
-.leftCat {
+.leftCat, .rightCat {
     position: relative; /* Keep it positioned within its flex container */
-}
-
-.rightCat {
-    height: 50px;
-    position: relative; /* Keep it positioned within its flex container */
-}
-body {
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    height: 75vh; /* Height of the body section */
-    margin: 0; /* Remove default margin */
-    background-color: #90D6FF; /* Background color */
-}
-
-header {
-    position: absolute; /* Position the header at the top */
-    top: 20px; /* Space from the top */
-    text-align: center; /* Center the text in the header */
-    width: 100%; /* Ensure the header takes full width */
-}
-
-.record {
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center items vertically */
-    margin: 100px 0; /* Margin between sections */
-}
-
-.playback {
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center items vertically */
 }
 
 textarea {
@@ -192,14 +125,21 @@ textarea {
     color: white;
 }
 
-
-
-button:hover {
-    background-color: #0056b3; /* Darker button color on hover */
+a {
+    color: rgb(0, 26, 255);
+    text-decoration: underline;
 }
 
-#banner-image
-{
+a:hover {
+    color: rgb(89, 20, 89);
+    cursor: pointer;
+}
+
+a::after {
+    color: black;
+}
+
+#banner-image {
     left: 0;
     right: 0;
     z-index: -1;
