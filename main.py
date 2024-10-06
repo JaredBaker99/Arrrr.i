@@ -1,7 +1,7 @@
 import os
 import uuid
 from datetime import datetime
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from elevenlabs import VoiceSettings
 from elevenlabs.client import ElevenLabs
 from flask_cors import CORS
@@ -16,6 +16,10 @@ CORS(app)  # Enable CORS for all routes
 
 # Track the last saved audio file
 last_file_path = None
+
+@app.route('/')
+def index():
+    return render_template('MainPage.html')
 
 @app.route('/speech-to-text', methods=['POST'])
 def speech_to_text():
