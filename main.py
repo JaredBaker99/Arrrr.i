@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 from elevenlabs import VoiceSettings
 from elevenlabs.client import ElevenLabs
 from test import translate_text_to_pirate_speech
+from flask_cors import CORS
 import os
 
 app = Flask(__name__)
@@ -13,32 +14,43 @@ ELEVENLABS_API_KEY = "sk_b190f1cb25c2dfb19d7f1f34b0146f2e4d2717bbb6450e7c"
 openai.api_key = OPENAI_API_KEY
 elevenlabs_client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
 
-# Function to generate responses from OpenAI
-def get_chatbot_response(user_response: str) -> str:
-    completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "You are a mean pirate."},
-            {"role": "user", "content": user_response}
-        ]
-    )
-    return completion.choices[0].message.content
+CORS(app)
 
-@app.route('/chatbot/', methods=['POST'])
-def talk_to_chatbot():
+@app.route('/speech-to-text', methods=['POST'])
+def speech_to_text():
     data = request.json
     text = data.get('text')
+
+    ptext = translate_text_to_pirate_speech(text)
+    
+    
+    # You may need to replace this with actual pirate text translation logic
+    pirate_text = f" {ptext}"  # Placeholder for actual pirate translation logic
+    audio_file_path = text_to_speech_file(ptext)
+    
+
+    return jsonify({'pirateText': pirate_text, 'audioFilePath': audio_file_path})
+
+
+@app.route('/chatbot', methods=['POST'])
+def talk_to_chatbot():
+    data = request.json  # Get JSON data from the request
+    text = data.get('text')
+
+    if text is None:
+        return jsonify({'error': 'Invalid input'}), 400  # Handle missing input
 
     # Get chatbot response
     chatbot_response = get_chatbot_response(text)
 
-    # Optionally convert the response to pirate speech
+    # Convert the response to pirate speech
     pirate_response = translate_text_to_pirate_speech(chatbot_response)
 
     # Generate speech from the pirate response
     text_to_speech_file(pirate_response)
-
+    
     return jsonify({'chatbot_response': pirate_response})
+
 
 def text_to_speech_file(text: str) -> str:
     response = elevenlabs_client.text_to_speech.convert(

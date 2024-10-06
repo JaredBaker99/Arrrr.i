@@ -70,7 +70,7 @@ function sendToServer(text) {
     .then(response => response.json())
     .then(data => {
         console.log('Response from server:', data);
-        pirateTextOutputElement.value = data.pirateText; // Update pirate text output
+        pirateTextOutputElement.value = data.pirateText; p[[-// Update pirate text output
     })
     .catch((error) => {
         console.error('Error:', error);
