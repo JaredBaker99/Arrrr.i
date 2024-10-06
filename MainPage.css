@@ -197,8 +197,6 @@ textarea {
     text-indent: 5px; /* Adds extra space from the left/right edges */
 }
 
-
-
 button:hover {
     background-color: #0056b3; /* Darker button color on hover */
 }
@@ -213,4 +211,13 @@ button:hover {
     height: 150%;
     position: absolute;
     top: -45px;
+}
+
+.link {
+    text-decoration: none; /* Remove the underline */
+    color: inherit; /* Use the current text color */
+}
+
+.link:hover {
+    color: inherit; /* Keep the same color on hover */
 }
