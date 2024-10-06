@@ -48,6 +48,7 @@ header h1{
     position: absolute;
     left: 120px;
     bottom: 230px;
+    vertical-align: middle;
     border-radius: 150px;
 }
 
@@ -58,6 +59,7 @@ header h1{
     right: 120px;
     bottom: 230px;
     border-radius: 150px;
+    vertical-align: middle;
 }
 
 button {
@@ -177,19 +179,22 @@ header {
 
 textarea {
     width: 300px; /* Set a fixed width for the textarea */
-    height: 50px; /* Set a fixed height for the textarea */
+    height: 100px; /* Set a fixed height for the textarea */
     margin: 0 10px; /* Margin on left and right */
     padding: 10px; /* Padding inside the textarea */
-    border-radius: 5px; /* Rounded corners */
+    border-radius: 15px; /* Rounded corners */
     border: 1px solid #ccc; /* Border styling */
     resize: none; /* Disable resizing */
-    text-align: center; /* Center text alignment */
-    overflow-wrap: break-word; /* Break words to the next line */
-    white-space: pre-wrap; /* Preserve whitespace and wrap */
+    text-align: center; /* Center text horizontally */
     font-family: Arial, sans-serif; /* Example font */
     font-size: 14px; /* Font size */
-    background-color: #797e82;
-    color: white;
+    background-color: #797e82; /* Background color */
+    color: white; /* Text color */
+    overflow: auto; /* Allow scrollbars if content overflows */
+    line-height: 1.5; /* Line height for better readability */
+    white-space: pre-wrap; /* Preserves whitespace and allows wrapping */
+    box-sizing: border-box; /* Ensure padding and border are included in the width/height */
+    text-indent: 5px; /* Adds extra space from the left/right edges */
 }
 
 
