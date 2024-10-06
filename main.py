@@ -1,3 +1,6 @@
+import os
+import uuid
+from datetime import datetime
 from flask import Flask, request, jsonify
 from elevenlabs import VoiceSettings
 from elevenlabs.client import ElevenLabs
@@ -11,20 +14,35 @@ client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
 
 CORS(app)  # Enable CORS for all routes
 
+# Track the last saved audio file
+last_file_path = None
+
 @app.route('/speech-to-text', methods=['POST'])
 def speech_to_text():
+    global last_file_path  # Declare that we'll use the global variable
+    
     data = request.json
     text = data.get('text')
 
     ptext = translate_text_to_pirate_speech(text)
     
-    
     # You may need to replace this with actual pirate text translation logic
     pirate_text = f" {ptext}"  # Placeholder for actual pirate translation logic
     audio_file_path = text_to_speech_file(ptext)
-    
 
+    # Delete the old file if it exists
+    if last_file_path and os.path.exists(last_file_path):
+        os.remove(last_file_path)
+
+    # Update the last file path to the new file
+    last_file_path = audio_file_path
+    
     return jsonify({'pirateText': pirate_text, 'audioFilePath': audio_file_path})
+
+@app.route('/list-audio-files', methods=['GET'])
+def list_audio_files():
+    audio_files = [f for f in os.listdir('.') if f.endswith('.mp3')]
+    return jsonify(audio_files)
 
 def text_to_speech_file(text: str) -> str:
     response = client.text_to_speech.convert(
@@ -39,15 +57,21 @@ def text_to_speech_file(text: str) -> str:
             use_speaker_boost=True,
         ),
     )
-    save_file_path = "output.mp3"
+    
+    # Create a unique filename using UUID
+    unique_id = str(uuid.uuid4())
+    save_file_path = f"output_{unique_id}.mp3"
+    
     with open(save_file_path, "wb") as f:
         for chunk in response:
             if chunk:
                 f.write(chunk)
+    
     return save_file_path
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 # Create text to turn into speech
 og_text = (
