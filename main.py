@@ -70,7 +70,7 @@ def text_to_speech_file(text: str) -> str:
     return save_file_path
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
 
 
 # Create text to turn into speech
